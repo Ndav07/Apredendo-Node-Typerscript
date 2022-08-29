@@ -1,0 +1,20 @@
+{
+  "name": "apredendo-node-typerscript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Ndav07/Apredendo-Node-Typerscript.git",
+  "author": "Ndav07 <94586597+Ndav07@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "ts-node-dev": "^2.0.0",
+    "typerscript": "^0.2.3"
+  }
+}
