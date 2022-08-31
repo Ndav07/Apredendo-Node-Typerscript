@@ -15,6 +15,7 @@ class SpecificationRepository implements ISpecificationsRepository {
         if(!SpecificationRepository.INSTANCE) {
             SpecificationRepository.INSTANCE = new SpecificationRepository();
         }
+        
         return SpecificationRepository.INSTANCE;
     }
 
