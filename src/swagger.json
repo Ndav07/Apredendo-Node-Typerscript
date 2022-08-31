@@ -1,0 +1,36 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Nikollas Documentation",
+        "description": "This is API",
+        "version": "1.0.0",
+        "contact": {
+            "email": "nikollasdavidor@hotmail.com"
+        }
+    },
+    "paths": {
+        "/categories": {
+            "post": {
+                "summary": "Create a category",
+                "description": "Create a new category",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "type": "object",
+                                "propertis": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
