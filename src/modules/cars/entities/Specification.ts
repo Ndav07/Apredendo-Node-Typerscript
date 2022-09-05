@@ -1,18 +1,18 @@
 import { v4 as uuidV4 } from "uuid";
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
-@Entity("categories")
-class Category {
-    @PrimaryColumn()
+@Entity('specifications')
+class Specification {
+    @PrimaryColumn({ type: "uuid" })
     id?: string;
 
-    @Column()
+    @Column({ type: "varchar", length: 30 })
     name: string;
 
-    @Column()
+    @Column({ type: "varchar", length: 300 })
     description: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: "date" })
     created_at: Date;
 
     constructor(){
@@ -22,4 +22,4 @@ class Category {
     }
 };
 
-export { Category };
+export { Specification };
