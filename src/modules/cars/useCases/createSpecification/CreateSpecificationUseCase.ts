@@ -1,7 +1,9 @@
+import { inject, injectable } from "tsyringe";
 import { ISpecificationsRepository, ICreateSpecification } from "../../repositories/ISpecificationsRepository";
 
+@injectable()
 class CreateSpecificationUseCase {
-    constructor(private specificationsRepository: ISpecificationsRepository){}
+    constructor(@inject("SpecificationRepository") private specificationsRepository: ISpecificationsRepository){}
 
     execute({name, description}: ICreateSpecification){
         const specificationAlreadyExists = this.specificationsRepository.findByName(name);

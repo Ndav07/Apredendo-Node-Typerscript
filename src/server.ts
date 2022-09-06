@@ -5,6 +5,8 @@ import swaggerFile from "./swagger.json";
 
 import { PostgresConnectDataBase } from "./database/data-source";
 
+import "./shared/container";
+
 import { router } from "./routes";
 
 PostgresConnectDataBase.initialize().then(() => {

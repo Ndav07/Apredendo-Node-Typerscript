@@ -1,9 +1,0 @@
-import { SpecificationRepository } from "../../repositories/implementations/SpecificationRepository";
-import { ListSpecificationsUseCase } from "./ListSpecificationsUseCase";
-import { ListSpecificationsController } from "./ListSpecificationsController";
-
-const specificationRepository = null;
-const listSpecificationsUseCase = new ListSpecificationsUseCase(specificationRepository);
-const listSpecificationsController = new ListSpecificationsController(listSpecificationsUseCase);
-
-export { listSpecificationsController };

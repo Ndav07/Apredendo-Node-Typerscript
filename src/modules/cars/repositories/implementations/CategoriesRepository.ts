@@ -3,11 +3,13 @@ import { PostgresConnectDataBase } from "../../../../database/data-source";
 import { Category } from "../../entities/Category";
 import { ICategoriesRepository, ICreateCategory } from "../ICategoriesRepository";
 
+
 class CategoriesRepository implements ICategoriesRepository{
-    private repository: Repository<Category>;
+    public repository: Repository<Category>;
 
     constructor() {
-        this.repository = PostgresConnectDataBase.getRepository(Category);
+        const connectionDataBase = PostgresConnectDataBase;
+        this.repository = connectionDataBase.getRepository(Category);
     };
 
     async findByName(name: string): Promise<Category> {
@@ -21,7 +23,13 @@ class CategoriesRepository implements ICategoriesRepository{
     }
 
     async list(): Promise<Category[]> {
-        const categories = await this.repository.find();
+        const categories = await this.repository.find({ 
+            select: {
+                id: false,
+                name: true,
+                description: true
+            },
+        });
         return categories;
     }
 
