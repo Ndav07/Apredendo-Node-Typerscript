@@ -3,10 +3,10 @@ import { ISpecificationsRepository, ICreateSpecification } from "../../repositor
 
 @injectable()
 class CreateSpecificationUseCase {
-    constructor(@inject("SpecificationRepository") private specificationsRepository: ISpecificationsRepository){}
+    constructor(@inject("SpecificationsRepository") private specificationsRepository: ISpecificationsRepository){}
 
-    execute({name, description}: ICreateSpecification){
-        const specificationAlreadyExists = this.specificationsRepository.findByName(name);
+    async execute({name, description}: ICreateSpecification){
+        const specificationAlreadyExists = await this.specificationsRepository.findByName(name);
 
         if(specificationAlreadyExists){
             throw new Error("Specification already exists!");

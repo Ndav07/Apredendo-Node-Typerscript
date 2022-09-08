@@ -25,7 +25,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
     async list(): Promise<Specification[]> {
         const specification = await this.repository.find({ 
             select: {
-                id: false,
+                id: true,
                 name: true,
                 description: true
             },

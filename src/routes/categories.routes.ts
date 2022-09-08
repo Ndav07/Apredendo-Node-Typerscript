@@ -9,7 +9,7 @@ const categoriesRoutes = Router();
 
 const upload = multer({ 
     dest: "./tmp",
-})
+});
 
 const createCategoryController = new CreateCategoryController();
 const listCategoriesController = new ListCategoriesController();

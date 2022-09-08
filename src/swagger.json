@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Nikollas Documentation",
+        "title": "Documentation",
         "description": "This is API",
         "version": "1.0.0",
         "contact": {
@@ -28,7 +28,7 @@
                                     }
                                 },
                                 "example": {
-                                    "name": "Category name saple",
+                                    "name": "Category name sample",
                                     "description": "Category description sample"
                                 }
                             }
@@ -48,6 +48,70 @@
                 "tags": ["Category"],
                 "summary": "List all caregories",
                 "description": "List all caregories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "aplication/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "propertis": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": ["Specifications"],
+                "summary":"Create a specification",
+                "description": "Create a new specification",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "type": "object",
+                                "propertis": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Specification name saple",
+                                    "description": "Specification description sample"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Caregory already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Specifications"],
+                "summary": "List all specifications",
+                "description": "List all specifications",
                 "responses": {
                     "200": {
                         "description": "Success",

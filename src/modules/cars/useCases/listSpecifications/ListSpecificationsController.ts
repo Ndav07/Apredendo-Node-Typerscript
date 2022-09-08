@@ -3,13 +3,11 @@ import { container } from "tsyringe";
 import { Request, Response } from "express";
 
 class ListSpecificationsController {
-
-    handle(req: Request, res: Response): Response {
+    async handle(req: Request, res: Response): Promise<Response> {
         const listSpecificationsUseCase = container.resolve(ListSpecificationsUseCase)
-        const listSpecifications = listSpecificationsUseCase.execute();
-        return res.json(listSpecifications); 
+        const listSpecifications = await listSpecificationsUseCase.execute();
+        return res.status(200).json(listSpecifications); 
     }
-    
 };
 
 export { ListSpecificationsController };

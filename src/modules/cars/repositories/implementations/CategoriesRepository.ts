@@ -6,7 +6,6 @@ import { ICategoriesRepository, ICreateCategory } from "../ICategoriesRepository
 
 class CategoriesRepository implements ICategoriesRepository{
     public repository: Repository<Category>;
-
     constructor() {
         const connectionDataBase = PostgresConnectDataBase;
         this.repository = connectionDataBase.getRepository(Category);
@@ -25,14 +24,13 @@ class CategoriesRepository implements ICategoriesRepository{
     async list(): Promise<Category[]> {
         const categories = await this.repository.find({ 
             select: {
-                id: false,
+                id: true,
                 name: true,
                 description: true
             },
         });
         return categories;
     }
-
 };
 
 export { CategoriesRepository };
