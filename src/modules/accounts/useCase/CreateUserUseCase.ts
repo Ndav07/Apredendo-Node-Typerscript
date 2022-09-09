@@ -1,7 +1,0 @@
-
-
-class CreateUserUseCase {
-    
-};
-
-export { CreateUserUseCase };

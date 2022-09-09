@@ -2,16 +2,13 @@ import { v4 as uuidV4 } from "uuid";
 import { Column, CreateDateColumn, Entity, Index, PrimaryColumn, Unique } from "typeorm";
 
 @Entity('users')
-@Index(["username"], { unique: true })
+@Index(["email"], { unique: true })
 class Users {
     @PrimaryColumn({ type: "uuid" })
     id?: string;
 
     @Column({ type: "varchar" })
     name: string;
-
-    @Column({ type: "varchar" })
-    username: string;
 
     @Column({ type: "varchar" })
     passaword: string;

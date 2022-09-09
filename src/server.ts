@@ -5,9 +5,9 @@ import swaggerFile from "./swagger.json";
 
 import { PostgresConnectDataBase } from "./database/data-source";
 
-import "./shared/container";
+import "./shared/container/containers";
 
-import { router } from "./routes";
+import { router } from "./routes/routers";
 
 PostgresConnectDataBase.initialize().then(() => {
         console.log("Data Source has been initialized!");
