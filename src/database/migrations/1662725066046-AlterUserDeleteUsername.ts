@@ -11,7 +11,6 @@ export class AlterUserDeleteUsername1662725066046 implements MigrationInterface 
             new TableColumn({
                 name: "username",
                 type: "varchar",
-                
             })
         );
     }

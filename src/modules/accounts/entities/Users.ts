@@ -22,7 +22,10 @@ class Users {
     @Column({ type: "boolean", default: false })
     isAdmin: boolean;
 
-    @CreateDateColumn({ type: "date" })
+    @Column({ type: "varchar" })
+    avatar: string;
+
+    @CreateDateColumn({ type: "date", nullable: true })
     created_at: Date;
 
     constructor(){
