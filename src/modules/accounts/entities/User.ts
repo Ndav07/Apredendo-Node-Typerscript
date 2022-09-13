@@ -1,9 +1,9 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, Index, PrimaryColumn, Unique } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, PrimaryColumn } from "typeorm";
 
 @Entity('users')
 @Index(["email"], { unique: true })
-class Users {
+class User {
     @PrimaryColumn({ type: "uuid" })
     id?: string;
 
@@ -35,4 +35,4 @@ class Users {
     }
 };
 
-export { Users };
+export { User };

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { PostgresConnectDataBase } from "../../../../database/data-source";
 import { Specification } from "../../entities/Specification";
-import { ICreateSpecification, ISpecificationsRepository } from "../ISpecificationsRepository";
+import { ICreateSpecificationDTO, ISpecificationsRepository } from "../ISpecificationsRepository";
 
 
 class SpecificationsRepository implements ISpecificationsRepository {
@@ -17,7 +17,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
         return specification;
     }
     
-    async create({ name, description }: ICreateSpecification): Promise<void> {
+    async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
         const specification = this.repository.create({ name, description });
         await this.repository.save(specification);
     }
