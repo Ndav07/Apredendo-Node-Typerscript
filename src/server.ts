@@ -4,12 +4,12 @@ import "express-async-errors";
 import swaggerUI from "swagger-ui-express";
 import swaggerFile from "./swagger.json";
 
-import { PostgresConnectDataBase } from "@database/data-source";
+import { PostgresConnectDataBase } from "@shared/infra/typeorm/data-source";
 
-import "./shared/container/containers";
+import "@shared/container/containers";
 
-import { router } from "./routes/routers";
-import { AppError } from "@errors/AppError";
+import { router } from "@shared/infra/express/routes/routers";
+import { AppError } from "@shared/errors/AppError";
 
 PostgresConnectDataBase.initialize().then(() => {
         console.log("Data Source has been initialized!");
