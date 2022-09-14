@@ -11,7 +11,7 @@ class User {
     name: string;
 
     @Column({ type: "varchar" })
-    passaword: string;
+    password: string;
 
     @Column({ type: "varchar" })
     email: string;

@@ -2,7 +2,7 @@ import { User } from "../entities/User";
 
 interface ICreateUserDTO {
     name: string;
-    passaword: string;
+    password: string;
     email: string;
     drive_licence: string;
     id?: string;

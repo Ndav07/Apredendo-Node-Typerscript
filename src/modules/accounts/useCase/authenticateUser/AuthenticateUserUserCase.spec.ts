@@ -19,7 +19,7 @@ describe("Authenticate user", () => {
         const user: ICreateUserDTO = {
             drive_licence: "000123",
             email: "user@test.com",
-            passaword: "1234",
+            password: "1234",
             name: "user test"
         };
 
@@ -27,9 +27,18 @@ describe("Authenticate user", () => {
         
         const userAthenticate = await authenticateUseCase.execute({
             email: user.email,
-            password: user.passaword
+            password: user.password
         });
 
         expect(userAthenticate).toHaveProperty("token");
     });
+
+    it("should not be able to authenticate an no existent user", () => {
+        expect(async () => {
+            await authenticateUseCase.execute({
+                email: "false@email.com",
+                password: "falsepassword"
+            });
+        })
+    })
 });

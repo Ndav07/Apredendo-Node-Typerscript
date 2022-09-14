@@ -13,7 +13,7 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
     if(!authHeader) {
         throw new AppError("Token missing", 401);
     }
-
+    
     const [, token] = authHeader.split(" ");
 
     try {

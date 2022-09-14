@@ -4,10 +4,10 @@ import { ICreateUserDTO, IUsersRepository } from "../IUsersRepository";
 class InMemoryUsersRepository implements IUsersRepository {
     users: User[] = [];
 
-    async create({ name, drive_licence, email, passaword }: ICreateUserDTO): Promise<void> {
+    async create({ name, drive_licence, email, password }: ICreateUserDTO): Promise<void> {
         const user = new User();
 
-        Object.assign(user, { name, drive_licence, email, passaword });
+        Object.assign(user, { name, drive_licence, email, password });
 
         this.users.push(user);
     }
