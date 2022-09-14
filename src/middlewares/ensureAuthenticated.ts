@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
-import { AppError } from "../errors/AppError";
-import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
+
+import { AppError } from "@errors/AppError";
+import { UsersRepository } from "@modules/accounts/repositories/implementations/UsersRepository";
 
 interface IUser_id {
     sub: string;

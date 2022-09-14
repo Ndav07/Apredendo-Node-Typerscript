@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
-import { PostgresConnectDataBase } from "../../../../database/data-source";
-import { User } from "../../entities/User";
-import { IUsersRepository, ICreateUserDTO } from "../IUsersRepository";
 
+import { PostgresConnectDataBase } from "@database/data-source";
+import { User } from "@modules/accounts/entities/User";
+import { IUsersRepository, ICreateUserDTO } from "@modules/accounts/repositories/IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
     private repository : Repository<User>;
