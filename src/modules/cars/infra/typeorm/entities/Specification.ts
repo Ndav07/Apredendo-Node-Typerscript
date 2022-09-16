@@ -12,7 +12,7 @@ class Specification {
     @Column({ type: "varchar", length: 300 })
     description: string;
 
-    @CreateDateColumn({ type: "date" })
+    @CreateDateColumn({ type: "timestamp" })
     created_at: Date;
 
     constructor(){

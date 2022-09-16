@@ -1,5 +1,5 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, Index, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, PrimaryColumn, Timestamp } from "typeorm";
 
 @Entity('users')
 @Index(["email"], { unique: true })
@@ -17,15 +17,15 @@ class User {
     email: string;
 
     @Column({ type: "varchar" })
-    drive_licence: string;
+    drive_license: string;
 
     @Column({ type: "boolean", default: false })
     isAdmin: boolean;
 
-    @Column({ type: "varchar" })
-    avatar: string;
+    @Column({ type: "varchar", nullable: false })
+    avatar?: string;
 
-    @CreateDateColumn({ type: "date", nullable: true })
+    @CreateDateColumn({ type: "timestamp", nullable: true })
     created_at: Date;
 
     constructor(){

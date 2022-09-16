@@ -7,6 +7,6 @@ export const PostgresConnectDataBase = new DataSource({
     username: "postgres",
     password: "postgres",
     database: "nodetype",
-    entities: ["./src/modules/**/entities/*.{ts,js}"],
-    migrations: ["./src/database/migrations/*.{ts,js}"]
+    entities: ["./src/modules/**/infra/typeorm/entities/*.{ts,js}"],
+    migrations: ["./src/shared/infra/typeorm/migrations/*.{ts,js}"]
 });

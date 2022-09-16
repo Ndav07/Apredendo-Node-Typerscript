@@ -8,10 +8,10 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "ts-node-dev tsconfig-paths/register ./node_modules/typeorm/cli",
-    "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:generate ./src/database/migrations/nomedoarquivo",
-    "migration:create": "typeorm-ts-node-commonjs migration:create ./src/database/migrations/nomedoarquivo",
-    "migration:run": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:run",
-    "migration:revert": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:revert",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:generate ./src/shared/infra/typeorm/migrations/nomedoarquivo",
+    "migration:create": "typeorm-ts-node-commonjs migration:create ./src/shared/infra/typeorm/migrations/nomedoarquivo",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs -d ./src/shared/infra/typeorm/data-source.ts migration:revert",
     "test": "jest"
   },
   "dependencies": {
