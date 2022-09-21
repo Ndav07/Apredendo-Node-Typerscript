@@ -6,6 +6,7 @@ import { ICategoriesRepository, ICreateCategoryDTO } from "@modules/cars/reposit
 
 class CategoriesRepository implements ICategoriesRepository{
     public repository: Repository<Category>;
+    
     constructor() {
         const connectionDataBase = PostgresConnectDataBase;
         this.repository = connectionDataBase.getRepository(Category);

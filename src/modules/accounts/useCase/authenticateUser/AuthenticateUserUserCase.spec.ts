@@ -16,7 +16,7 @@ describe("Authenticate user", () => {
         authenticateUseCase = new AuthenticateUserUseCase(inMemoryUsersRepository);
         createUserUseCase = new CreateUserUseCase(inMemoryUsersRepository);
         user = {
-            drive_licence: "000123",
+            drive_license: "000123",
             email: "user@test.com",
             password: "1234",
             name: "user test"

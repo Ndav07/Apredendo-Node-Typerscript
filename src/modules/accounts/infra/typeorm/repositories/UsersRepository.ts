@@ -1,15 +1,16 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 
 import { PostgresConnectDataBase } from "@shared/infra/typeorm/data-source";
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { IUsersRepository, ICreateUserDTO } from "@modules/accounts/repositories/IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
+    private connectionDataBase: DataSource;
     private repository : Repository<User>;
 
     constructor() {
-        const connectionDataBase = PostgresConnectDataBase;
-        this.repository = connectionDataBase.getRepository(User);
+        this.connectionDataBase = PostgresConnectDataBase;
+        this.repository = this.connectionDataBase.getRepository(User);
     }
 
     async create({ name, email, drive_license, password, id, avatar }: ICreateUserDTO): Promise<void> {

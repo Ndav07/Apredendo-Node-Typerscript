@@ -6,13 +6,13 @@ class Specification {
     @PrimaryColumn({ type: "uuid" })
     id?: string;
 
-    @Column({ type: "varchar", length: 30 })
+    @Column({ type: "varchar" })
     name: string;
 
-    @Column({ type: "varchar", length: 300 })
+    @Column({ type: "varchar" })
     description: string;
 
-    @CreateDateColumn({ type: "timestamp" })
+    @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;
 
     constructor(){
