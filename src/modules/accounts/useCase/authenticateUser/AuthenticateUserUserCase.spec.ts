@@ -1,7 +1,7 @@
 import { AppError } from "@shared/errors/AppError";
 import { InMemoryUsersRepository } from "@modules/accounts/repositories/in-memory/InMemoryUsersRepository";
 import { ICreateUserDTO } from "@modules/accounts/repositories/IUsersRepository";
-import { CreateUserUseCase } from "@modules/accounts/useCase/createUseCase/CreateUserUseCase";
+import { CreateUserUseCase } from "@modules/accounts/useCase/createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "@modules/accounts/useCase/authenticateUser/AuthenticateUserUseCase";
 
 describe("Authenticate user", () => {

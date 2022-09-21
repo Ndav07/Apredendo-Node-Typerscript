@@ -7,6 +7,7 @@ interface ICreateUserDTO {
     drive_license: string;
     id?: string;
     avatar?: string;
+    isAdmin?: boolean;
 };
 
 interface IUsersRepository {
