@@ -1,5 +1,5 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { Category } from "./Category";
 
 @Entity('cars')
@@ -28,8 +28,7 @@ class Car {
     @Column({ type: "varchar" })
     brand: string;
     
-    @OneToOne(() => Category, category => category.id)
-    @JoinColumn()
+    @ManyToOne(() => Category, category => category.id, { nullable: false })
     category: Category;
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
@@ -38,7 +37,6 @@ class Car {
     constructor(){
         if(!this.id) {
             this.id = uuidV4();
-            this.available = true;
         } 
     }
 }

@@ -1,5 +1,6 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Car } from "./Car";
 
 @Entity('categories')
 class Category {
@@ -11,6 +12,9 @@ class Category {
 
     @Column({ type: "varchar" })
     description: string;
+
+    @OneToMany(() => Car, car => car.category)
+    cars: Car[];
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;

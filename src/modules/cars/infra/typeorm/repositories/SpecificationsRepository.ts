@@ -1,15 +1,16 @@
-import { Repository } from "typeorm";
+import { Repository, DataSource } from "typeorm";
 
 import { PostgresConnectDataBase } from "@shared/infra/typeorm/data-source";
 import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import { ICreateSpecificationDTO, ISpecificationsRepository } from "@modules/cars/repositories/ISpecificationsRepository";
 
 class SpecificationsRepository implements ISpecificationsRepository {
-    public repository: Repository<Specification>;
+    private connectionDataBase: DataSource; 
+    private repository: Repository<Specification>;
 
-    constructor(){
-        const connectionDataBase = PostgresConnectDataBase;
-        this.repository = connectionDataBase.getRepository(Specification);
+    constructor() {
+        this.connectionDataBase = PostgresConnectDataBase;
+        this.repository = this.connectionDataBase.getRepository(Specification);
     }
 
     async findByName(name: string): Promise<Specification> {

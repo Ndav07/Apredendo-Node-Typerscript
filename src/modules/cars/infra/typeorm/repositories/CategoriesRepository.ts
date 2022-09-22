@@ -1,16 +1,17 @@
-import { Repository } from "typeorm";
+import { DataSource, Repository } from "typeorm";
 
 import { PostgresConnectDataBase } from "@shared/infra/typeorm/data-source";
 import { Category } from "@modules/cars/infra/typeorm/entities/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "@modules/cars/repositories/ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository{
-    public repository: Repository<Category>;
-    
+    private connectionDataBase: DataSource; 
+    private repository: Repository<Category>;
+
     constructor() {
-        const connectionDataBase = PostgresConnectDataBase;
-        this.repository = connectionDataBase.getRepository(Category);
-    };
+        this.connectionDataBase = PostgresConnectDataBase;
+        this.repository = this.connectionDataBase.getRepository(Category);
+    }
 
     async findByName(name: string): Promise<Category> {
         const category = await this.repository.findOne({ where: {name: name} });

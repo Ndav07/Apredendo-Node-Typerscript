@@ -31,6 +31,11 @@ class CarsRepository implements ICarsRepository {
         await this.repository.save(car);
         return car;
     }
+
+    async findAvailable(): Promise<Car[]> {
+        const cars = await this.repository.createQueryBuilder("cars").leftJoinAndSelect("cars.category", "category").where("cars.available = :available", { available : true}).getMany();
+        return cars;
+    }
 };
 
 export { CarsRepository }
