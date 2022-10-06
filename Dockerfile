@@ -1,13 +1,13 @@
-FROM node
+FROM node:16-alpine
 
-WORKDIR /usr/app
+RUN mkdir -p /src
 
-COPY package.json ./
+COPY package.json /src/package.json
 
-RUN npm install
+WORKDIR /src
 
-COPY . .
+RUN yarn install
 
-EXPOSE 3333
+COPY . /src
 
-CMD ["npm", "run", "dev"]
+CMD yarn dev

@@ -44,7 +44,11 @@ describe("List Cars", () => {
 
     it("should be able to list all available cars", async () => {
         inMemoryCarsRepository.create(carsUsers);
-        const cars = await listCarsUseCase.execute();
-        return cars;
+        const cars = await listCarsUseCase.execute({ brand: "Test2" });
+        expect(cars).toBe([carsUsers]);
+    });
+
+    it("should be able to list all available cars by name", () => {
+
     });
 })
