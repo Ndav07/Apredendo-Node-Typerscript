@@ -1,5 +1,6 @@
 import { v4 as uuidV4 } from "uuid";
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Car } from "./Car";
 
 @Entity('specifications')
 class Specification {
@@ -11,7 +12,7 @@ class Specification {
 
     @Column({ type: "varchar" })
     description: string;
-
+    
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;
 

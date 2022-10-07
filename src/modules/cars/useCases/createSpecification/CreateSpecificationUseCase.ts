@@ -7,7 +7,7 @@ import { ISpecificationsRepository, ICreateSpecificationDTO } from "@modules/car
 class CreateSpecificationUseCase {
     constructor(@inject("SpecificationsRepository") private specificationsRepository: ISpecificationsRepository){}
 
-    async execute({ name, description }: ICreateSpecificationDTO){
+    async execute({ name, description }: ICreateSpecificationDTO) {
         const specificationAlreadyExists = await this.specificationsRepository.findByName(name);
 
         if(specificationAlreadyExists){

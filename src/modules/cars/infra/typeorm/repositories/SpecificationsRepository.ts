@@ -24,13 +24,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
     }
 
     async list(): Promise<Specification[]> {
-        const specification = await this.repository.find({ 
-            select: {
-                id: true,
-                name: true,
-                description: true
-            },
-        });
+        const specification = await this.repository.createQueryBuilder("specifications").getMany();
         return specification;
     }
 };

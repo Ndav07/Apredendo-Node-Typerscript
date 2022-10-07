@@ -14,7 +14,7 @@ class Category {
     description: string;
 
     @OneToMany(() => Car, car => car.category)
-    cars: Car[];
+    cars?: Car[];
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;

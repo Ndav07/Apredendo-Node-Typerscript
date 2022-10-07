@@ -1,15 +1,14 @@
-import { ListCarsUseCase } from "./ListCarsUseCase";
+import { ListAvailableCarsUseCase } from "./ListAvailableCarsUseCase";
 import { InMemoryCarsRepository } from "@modules/cars/repositories/in-memory/inMemoryCarsRepository";
-import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 
 describe("List Cars", () => {
     let inMemoryCarsRepository: InMemoryCarsRepository;
-    let listCarsUseCase: ListCarsUseCase;
+    let listAvailableCarsUseCase: ListAvailableCarsUseCase;
     let carsUsers: any;
 
     beforeEach(() => {
         inMemoryCarsRepository = new InMemoryCarsRepository();
-        listCarsUseCase = new ListCarsUseCase(inMemoryCarsRepository);
+        listAvailableCarsUseCase = new ListAvailableCarsUseCase(inMemoryCarsRepository);
         carsUsers = [
             {
                 name: "Name Car1",
@@ -44,11 +43,27 @@ describe("List Cars", () => {
 
     it("should be able to list all available cars", async () => {
         inMemoryCarsRepository.create(carsUsers);
-        const cars = await listCarsUseCase.execute({ brand: "Test2" });
-        expect(cars).toBe([carsUsers]);
+        const cars = await listAvailableCarsUseCase.execute({ });
+        expect(cars).toEqual([carsUsers]);
     });
 
-    it("should be able to list all available cars by name", () => {
+    it("should be able to list all available cars by brand", async () => {
+        inMemoryCarsRepository.create(carsUsers);
+        const cars = await listAvailableCarsUseCase.execute({ brand: "Test2" });
+        expect(cars).toEqual([carsUsers[1]]);
+    });
 
+    it("should be able to list all available cars by name", async () => {
+        inMemoryCarsRepository.create(carsUsers);
+        const cars = await listAvailableCarsUseCase.execute({ name: "Name Car1" });
+        expect(cars).toEqual([carsUsers[0]]);
+    });
+
+    it("should be able to list all available cars by category", async () => {
+        inMemoryCarsRepository.create(carsUsers);
+        const cars = await listAvailableCarsUseCase.execute({ category: "test2" });
+        for(let j in cars) { 
+            expect(cars[j].category.id).toEqual([carsUsers[0].category.id]);
+        }
     });
 })

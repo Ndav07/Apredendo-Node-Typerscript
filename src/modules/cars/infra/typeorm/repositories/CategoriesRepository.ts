@@ -24,13 +24,7 @@ class CategoriesRepository implements ICategoriesRepository{
     }
 
     async list(): Promise<Category[]> {
-        const categories = await this.repository.find({ 
-            select: {
-                id: true,
-                name: true,
-                description: true
-            },
-        });
+        const categories = await this.repository.createQueryBuilder("categories").leftJoinAndSelect("categories.cars", "cars").getMany();
         return categories;
     }
 };

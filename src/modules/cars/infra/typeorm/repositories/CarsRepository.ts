@@ -26,14 +26,25 @@ class CarsRepository implements ICarsRepository {
         if(!categotyCar){
             throw new AppError("Category not exist", 400);
         };
-        
         const car = this.repository.create({ name, description, daily_rate, license_plate, fine_amount, brand, category: categotyCar });
         await this.repository.save(car);
         return car;
     }
 
     async findAvailable(category?: string, brand?: string, name?: string): Promise<Car[]> {
-        const cars = await this.repository.createQueryBuilder("cars").leftJoinAndSelect("cars.category", "category").where("cars.available = :available", { available : true}).getMany();
+        const carsQuery = this.repository.createQueryBuilder("cars").leftJoinAndSelect("cars.category", "category").leftJoinAndSelect("cars.specifications", "specifications").where("cars.available = :available", { available : true});
+            if(category) {
+                carsQuery.andWhere("cars.category.id = :category", { category });
+            }
+            if(brand) {
+                carsQuery.andWhere("cars.brand = :brand", { brand });
+            }
+            if(name) {
+                carsQuery.andWhere("cars.name = :name", { name });
+            }
+
+        const cars = await carsQuery.getMany();
+        
         return cars;
     }
 };

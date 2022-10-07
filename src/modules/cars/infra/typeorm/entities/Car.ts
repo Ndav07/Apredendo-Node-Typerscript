@@ -1,6 +1,7 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
 import { Category } from "./Category";
+import { Specification } from "./Specification";
 
 @Entity('cars')
 class Car {
@@ -28,8 +29,12 @@ class Car {
     @Column({ type: "varchar" })
     brand: string;
     
-    @ManyToOne(() => Category, category => category.id, { nullable: false })
+    @ManyToOne(() => Category, category => category.cars, { nullable: false })
     category: Category;
+
+    @ManyToMany(() => Specification, specification => specification, { nullable: true, onDelete: "SET NULL" })
+    @JoinTable()
+    specifications?: Specification[];
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;
