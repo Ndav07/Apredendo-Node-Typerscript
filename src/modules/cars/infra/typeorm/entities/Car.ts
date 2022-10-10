@@ -32,7 +32,7 @@ class Car {
     @ManyToOne(() => Category, category => category.cars, { nullable: false })
     category: Category;
 
-    @ManyToMany(() => Specification, specification => specification, { nullable: true, onDelete: "SET NULL" })
+    @ManyToMany(() => Specification, specifications => specifications.cars, { nullable: true, onDelete: "SET NULL" })
     @JoinTable()
     specifications?: Specification[];
 

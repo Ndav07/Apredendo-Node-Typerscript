@@ -19,6 +19,11 @@ class InMemorySpecificationRepository implements ISpecificationsRepository {
         const specifications = this.specifications;
         return specifications;
     }
+    
+    async findByIds(ids: string[]): Promise<Specification[]> {
+        const specifications = this.specifications.filter((specifications) => ids.includes(specifications.id));
+        return specifications;
+    }
 
 }
 

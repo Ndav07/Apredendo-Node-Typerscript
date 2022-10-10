@@ -1,4 +1,5 @@
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
+import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
 import { ICarsRepository, ICreateCarDTO } from "../ICarsRepository";
 
 class InMemoryCarsRepository implements ICarsRepository {
@@ -9,9 +10,9 @@ class InMemoryCarsRepository implements ICarsRepository {
         return car;
     }
 
-    async create({ name, description, daily_rate, license_plate, fine_amount, brand, category, specification }: ICreateCarDTO): Promise<Car> {
+    async create({ name, description, daily_rate, license_plate, fine_amount, brand, category }: ICreateCarDTO): Promise<Car> {
         const car = new Car();
-        Object.assign(car, { name, description, daily_rate, license_plate, fine_amount, brand, category, specification });
+        Object.assign(car, { name, description, daily_rate, license_plate, fine_amount, brand, category });
         this.cars.push(car);
         return car;
     }
@@ -23,6 +24,15 @@ class InMemoryCarsRepository implements ICarsRepository {
             }
         });
         return cars;
+    }
+
+    async findById(id: string): Promise<Car> {
+        const car = this.cars.find(cars => cars.id === id);
+        return car;
+    }
+
+    async addSpecificatiosInCar(car: Car, specifications: Specification[]): Promise<void> {
+        
     }
 };
 
