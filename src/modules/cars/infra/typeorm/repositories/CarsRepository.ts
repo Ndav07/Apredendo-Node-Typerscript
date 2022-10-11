@@ -55,7 +55,8 @@ class CarsRepository implements ICarsRepository {
     }
     
     async addSpecificatiosInCar(car: Car, specifications: Specification[]): Promise<void> {
-        await this.repository.createQueryBuilder("cars").update().set({ specifications: specifications }).where("id = :id", { id: car.id }).execute();
+        await this.repository.update(car.id, {specifications: specifications});
+        //await this.repository.createQueryBuilder("cars").update().set({ specifications: specifications }).where("id = :id", { id: car.id }).execute();
     }
     
 };
