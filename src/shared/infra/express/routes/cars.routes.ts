@@ -17,6 +17,6 @@ carsRoutes.get("/available", listAvailableCarsController.handle);
 
 carsRoutes.post("/", ensureAuthenticated, ensureAdmin, createCarController.handle);
 
-carsRoutes.put("/createCarSpecifications", ensureAuthenticated, ensureAdmin, createCarSpecificationController.handle);
+carsRoutes.post("/createCarSpecifications", ensureAuthenticated, ensureAdmin, createCarSpecificationController.handle);
 
 export { carsRoutes };

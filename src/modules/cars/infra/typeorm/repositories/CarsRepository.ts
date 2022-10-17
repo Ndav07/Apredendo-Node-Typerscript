@@ -54,11 +54,12 @@ class CarsRepository implements ICarsRepository {
         return car;
     }
     
-    async addSpecificatiosInCar(car: Car, specifications: Specification[]): Promise<void> {
-        await this.repository.update(car.id, {specifications: specifications});
-        //await this.repository.createQueryBuilder("cars").update().set({ specifications: specifications }).where("id = :id", { id: car.id }).execute();
+    async addSpecificatiosInCar(car: Car, specifications: Specification): Promise<void> {
+        await this.connectionDataBase.createQueryBuilder().insert().into("cars_specifications_specifications").values({
+            carsId : car.id,
+            specificationsId: specifications.id
+        }).execute();
     }
-    
 };
 
 export { CarsRepository }

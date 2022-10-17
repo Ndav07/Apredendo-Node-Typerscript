@@ -16,7 +16,7 @@ interface ICarsRepository {
     findByLicensePlate(license_plate: string): Promise<Car>;
     findAvailable(category?: string, brand?: string, name?: string): Promise<Car[]>;
     findById(id: string): Promise<Car>;
-    addSpecificatiosInCar(car: Car, specifications: Specification[]): Promise<void>;
+    addSpecificatiosInCar(car: Car, specifications: Specification): Promise<void>;
 };
 
 export { ICarsRepository, ICreateCarDTO };
