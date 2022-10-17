@@ -31,7 +31,7 @@ class InMemoryCarsRepository implements ICarsRepository {
         return car;
     }
 
-    async addSpecificatiosInCar(car: Car, specifications: Specification[]): Promise<void> {
+    async addSpecificatiosInCar(car: Car, specifications: Specification): Promise<void> {
         
     }
 };
