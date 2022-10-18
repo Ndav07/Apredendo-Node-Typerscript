@@ -1,7 +1,8 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { Category } from "./Category";
 import { Specification } from "./Specification";
+import { CarImage } from "./CarImage";
 
 @Entity('cars')
 class Car {
@@ -35,6 +36,9 @@ class Car {
     @ManyToMany(() => Specification, specifications => specifications.cars, { nullable: true, onDelete: "SET NULL" })
     @JoinTable()
     specifications?: Specification[];
+
+    @OneToMany(() => CarImage, carImage => carImage.car, { nullable: true, onDelete: "SET NULL" })
+    carImagens?: CarImage[];
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;
