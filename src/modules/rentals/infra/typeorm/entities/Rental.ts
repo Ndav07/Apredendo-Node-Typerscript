@@ -9,17 +9,17 @@ class Rental {
     @PrimaryColumn({ type: "uuid" })
     id?: string;
 
-    @Column({ type: "timestamp" })
+    @Column({ type: "timestamp", default: "now()" })
     start_date: Date;
 
-    @Column({ type: "timestamp" })
+    @Column({ type: "timestamp", nullable: true })
     end_date?: Date;
 
     @Column({ type: "timestamp" })
     expected_return_date: Date;
 
-    @Column({ type: "numeric" })
-    total: number;
+    @Column({ type: "numeric", nullable: true })
+    total?: number;
 
     @OneToOne(() => Car, { onDelete: "SET NULL" })
     @JoinColumn()

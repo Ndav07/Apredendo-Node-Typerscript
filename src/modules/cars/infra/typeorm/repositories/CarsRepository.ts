@@ -2,7 +2,7 @@ import { DataSource, Repository } from "typeorm";
 
 import { PostgresConnectDataBase } from "@shared/infra/typeorm/data-source";
 import { Car } from "../entities/Car";
-import { ICarsRepository, ICreateCarDTO } from "@modules/cars/repositories/ICarsRepository";
+import { ICarsRepository, ICreateCarDTO, IEditCarAvailabilityDTO } from "@modules/cars/repositories/ICarsRepository";
 import { Category } from "../entities/Category";
 import { AppError } from "@shared/errors/AppError";
 import { Specification } from "../entities/Specification";
@@ -59,6 +59,10 @@ class CarsRepository implements ICarsRepository {
             carsId : car.id,
             specificationsId: specifications.id
         }).execute();
+    }
+
+    async editAvailability({ id, state }: IEditCarAvailabilityDTO): Promise<void> {
+        await this.repository.createQueryBuilder().update().set({ available: state }).where("id = :id", { id }).execute();
     }
 };
 

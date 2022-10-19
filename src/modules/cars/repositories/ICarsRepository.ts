@@ -11,12 +11,18 @@ interface ICreateCarDTO {
     category: string;
 };
 
+interface IEditCarAvailabilityDTO {
+    id: string; 
+    state: boolean;
+};
+
 interface ICarsRepository {
     create(data : ICreateCarDTO): Promise<Car>;
     findByLicensePlate(license_plate: string): Promise<Car>;
     findAvailable(category?: string, brand?: string, name?: string): Promise<Car[]>;
     findById(id: string): Promise<Car>;
     addSpecificatiosInCar(car: Car, specifications: Specification): Promise<void>;
+    editAvailability(data: IEditCarAvailabilityDTO): Promise<void>;
 };
 
-export { ICarsRepository, ICreateCarDTO };
+export { ICarsRepository, ICreateCarDTO, IEditCarAvailabilityDTO };

@@ -12,17 +12,19 @@ class RentalsRepository implements IRentalsRepository{
         this.repository = this.connectionDataBase.getRepository(Rental);
     }
 
-    async findByCar(car: string): Promise<boolean> {
-        const carAvailable = await this.repository.createQueryBuilder("car").where("rentals.car = :car", { car }).getOne();
-        if(!carAvailable) {
+    async findOpenRentalByUser(user: string): Promise<boolean> {
+        const openRental = await this.repository.createQueryBuilder("rentals").where("rentals.user = :user", { user }).getOne();
+        if(openRental && !openRental.end_date) {
             return true
         } else {
             return false
         }
     }
 
-    create({ user, car, start_date, expected_return_date }: ICreateRentalDTO ): Promise<void> {
-        throw new Error("Method not implemented.");
+    async create({ user, car, expected_return_date }: ICreateRentalDTO ): Promise<Rental> {
+        const rental = this.repository.create({ user, car, expected_return_date });
+        await this.repository.save(rental);
+        return rental;
     }
 };
 
