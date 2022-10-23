@@ -1,5 +1,5 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 
 import { Car } from "../../../../cars/infra/typeorm/entities/Car";
 import { User } from "../../../../accounts/infra/typeorm/entities/User";
@@ -10,29 +10,29 @@ class Rental {
     id?: string;
 
     @Column({ type: "timestamp", default: "now()" })
-    start_date: Date;
+    start_date?: Date;
 
     @Column({ type: "timestamp", nullable: true })
     end_date?: Date;
 
     @Column({ type: "timestamp" })
-    expected_return_date: Date;
+    expected_return_date?: Date;
 
     @Column({ type: "numeric", nullable: true })
     total?: number;
 
     @OneToOne(() => Car, { onDelete: "SET NULL" })
     @JoinColumn()
-    car: Car;
+    car?: Car;
 
     @OneToOne(() => User, { onDelete: "SET NULL" })
     @JoinColumn()
-    user: User;
+    user?: User;
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at?: Date;
 
-    @Column({ type: "timestamp", default: "now()" })
+    @UpdateDateColumn({ type: "timestamp", default: "now()" })
     updated_at?: Date;
 
     constructor(){

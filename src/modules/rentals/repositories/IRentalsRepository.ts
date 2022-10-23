@@ -8,9 +8,19 @@ interface ICreateRentalDTO {
     expected_return_date: Date;
 };
 
+interface IEditRentalDTO {
+    id: string;
+    end_date: Date;
+    total: number;
+    updated_at: Date;
+}
+
 interface IRentalsRepository {
     create(data: ICreateRentalDTO): Promise<Rental>;
     findOpenRentalByUser(user: string): Promise<boolean>;
+    findRentalsByUser(user: string): Promise<Rental[]>;
+    findRentalById(id: string): Promise<Rental>;
+    updateRental(data: IEditRentalDTO): Promise<void>;
 };
 
-export { IRentalsRepository, ICreateRentalDTO };
+export { IRentalsRepository, ICreateRentalDTO, IEditRentalDTO };

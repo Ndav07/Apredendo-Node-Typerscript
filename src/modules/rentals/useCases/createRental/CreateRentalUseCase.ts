@@ -57,7 +57,7 @@ class CreateRentalUseCase {
 
         const rental = await this.rentalsRepository.create({ user: activeUser, car: carExist, expected_return_date })
         
-        await this.carsRepository.editAvailability({ id: carExist.id, state: true });
+        await this.carsRepository.editAvailability({ id: carExist.id, state: false });
 
         const returnRent = {
             id: rental.id,

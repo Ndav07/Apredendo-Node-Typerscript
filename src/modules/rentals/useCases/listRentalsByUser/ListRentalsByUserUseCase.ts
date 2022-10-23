@@ -1,0 +1,15 @@
+import { injectable, inject } from "tsyringe";
+
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+
+@injectable()
+class ListRentalsByUserUseCase {
+    constructor(@inject("RentalsRepository") private rentalsRepository: IRentalsRepository) {}
+    async execute(user: string): Promise<Rental[]> {
+        const rentals = await this.rentalsRepository.findRentalsByUser(user);
+        return rentals;
+    }
+};
+
+export { ListRentalsByUserUseCase };
