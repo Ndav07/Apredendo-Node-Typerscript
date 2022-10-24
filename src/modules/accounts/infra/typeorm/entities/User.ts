@@ -1,5 +1,6 @@
 import { v4 as uuidV4 } from "uuid";
-import { Column, CreateDateColumn, Entity, Index, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, OneToMany, PrimaryColumn } from "typeorm";
+import { UserToken } from "./UserToken";
 
 @Entity('users')
 @Index(["email"], { unique: true })
@@ -24,6 +25,9 @@ class User {
 
     @Column({ type: "varchar", nullable: true })
     avatar?: string;
+
+    @OneToMany(() => UserToken, tokens => tokens.user, { nullable: true, onDelete: "SET NULL" })
+    tokens?: UserToken[];
 
     @CreateDateColumn({ type: "timestamp", default: "now()" })
     created_at: Date;

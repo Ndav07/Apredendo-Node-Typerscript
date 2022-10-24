@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { User } from "./User";
 
@@ -10,8 +10,7 @@ class UserToken {
     @Column({ type: "varchar" })
     refresh_token: string;
 
-    @OneToOne(() => User, { onDelete: "CASCADE" })
-    @JoinColumn()
+    @ManyToOne(() => User, user => user.tokens, { onDelete: "CASCADE" })
     user: User;
 
     @Column({ type: "timestamp" })
