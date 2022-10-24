@@ -25,6 +25,11 @@ class UsersTokensRepository implements IUsersTokensRepository {
         return userToken;
     }
 
+    async findByRefreshToken(refresh_token: string): Promise<UserToken> {
+        const userToken = await this.repository.createQueryBuilder("tokens").where("tokens.refresh_token = :refresh_token", { refresh_token }).getOne();
+        return userToken;
+    }
+
     async deleteById(id: string): Promise<void> {
         await this.repository.createQueryBuilder().delete().where("id = :id", { id }).execute();
     }

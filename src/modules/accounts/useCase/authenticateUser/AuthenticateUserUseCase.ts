@@ -50,17 +50,6 @@ class AuthenticateUserUseCase {
             expiresIn: expires_in_refresh_token
         });
 
-        /*
-
-        const userToken = await this.usersTokensRepository.findByUserIdAndRefreshToken(user.id, token);
-
-        if(userToken) {
-            console.log(userToken)
-            await this.usersTokensRepository.deleteById(userToken.id);
-        }
-
-        */
-
         const refresh_token_expires_date = this.dateProvider.addDays(expires_refresh_token_days);
 
         await this.usersTokensRepository.create({ refresh_token: refresh_token, user: user, expires_date: refresh_token_expires_date});

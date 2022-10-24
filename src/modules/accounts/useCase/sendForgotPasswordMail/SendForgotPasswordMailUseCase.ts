@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { v4 as uiidv4 } from "uuid";
+import { resolve } from "path";
 
 import { AppError } from "@shared/errors/AppError";
 
@@ -23,13 +24,20 @@ class SendForgotPasswordMailUseCase {
             throw new AppError("User does not exists!");
         }
 
+        const templatePath = resolve(__dirname, "..", "..", "views", "emails", "forgotPassword.hbs");
+
         const token = uiidv4();
 
         const expires_date = this.dateProvider.addHours(auth.expires_refresh_token_hours);
 
         await this.usersTokensRepository.create({ refresh_token: token, user: user, expires_date });
 
-        await this.mailProvider.sendMail(email, "Recuperação de senha", `O link para o reset é ${token}`);
+        const variables = {
+            name: user.name,
+            link: `${process.env.FORGOT_MAIL_URL}${token}`
+        };
+
+        await this.mailProvider.sendMail(email, "Recuperação de senha", variables, templatePath);
     }
 };
 
