@@ -1,8 +1,11 @@
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { Specification } from "@modules/cars/infra/typeorm/entities/Specification";
-import { ICarsRepository, ICreateCarDTO } from "../ICarsRepository";
+import { ICarsRepository, ICreateCarDTO, IEditCarAvailabilityDTO } from "../ICarsRepository";
 
 class InMemoryCarsRepository implements ICarsRepository {
+    editAvailability(data: IEditCarAvailabilityDTO): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
     cars: Car[] = [];
 
     async findByLicensePlate(license_plate: string): Promise<Car> {

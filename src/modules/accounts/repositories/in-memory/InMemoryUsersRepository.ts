@@ -2,6 +2,9 @@ import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { ICreateUserDTO, IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 
 class InMemoryUsersRepository implements IUsersRepository {
+    updatePassword(password: string, id: string): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
     users: User[] = [];
 
     async create({ name, drive_license, email, password }: ICreateUserDTO): Promise<void> {
