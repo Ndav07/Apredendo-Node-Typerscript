@@ -26,7 +26,7 @@ class UsersTokensRepository implements IUsersTokensRepository {
     }
 
     async findByRefreshToken(refresh_token: string): Promise<UserToken> {
-        const userToken = await this.repository.createQueryBuilder("tokens").where("tokens.refresh_token = :refresh_token", { refresh_token }).getOne();
+        const userToken = await this.repository.createQueryBuilder("tokens").leftJoinAndSelect("tokens.user", "user").where("tokens.refresh_token = :refresh_token", { refresh_token }).getOne();
         return userToken;
     }
 
